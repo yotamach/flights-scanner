@@ -1,0 +1,44 @@
+<form [formGroup]="searchFlightForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>From</mat-label>
+      <input matInput placeholder="where" formControlName="fromLocation">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>To</mat-label>
+      <input matInput placeholder="Where you want to flight" formControlName="toLocation">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Departure</mat-label>
+      <input appearance="outline" matInput [matDatepicker]="picker1" formControlName="departureDate">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Return</mat-label>
+      <input appearance="outline" matInput [matDatepicker]="picker2" formControlName="returnDate">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-checkbox (change)="enableNumOfConnections()" color="primary" formControlName="isConnections">Connections</mat-checkbox>
+  </div>
+  <div class="row">
+    <mat-slider
+    color="primary"
+    [disabled]="disableConnectionsChoose"
+    [invert]="invert"
+    [max]="max"
+    [min]="min"
+    [step]="step"
+    [thumbLabel]="thumbLabel"
+    [tickInterval]="getSliderTickInterval()"
+    formControlName="numOfConnections"
+    [vertical]="vertical">
+</mat-slider>
+  </div>
+  <button type="submit" [disabled]="disableSubmit" mat-raised-button color="warn">Search flights</button>
+</form>

@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- From Location Column -->
+  <ng-container matColumnDef="fromLocation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> From Location </th>
+    <td mat-cell *matCellDef="let element"> {{element.fromLocation}} </td>
+  </ng-container>
+
+  <!-- To Location Column -->
+  <ng-container matColumnDef="toLocation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
+    <td mat-cell *matCellDef="let element"> {{element.toLocation}} </td>
+  </ng-container>
+
+  <!-- Departure Date Column -->
+  <ng-container matColumnDef="departureDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Departure Date </th>
+    <td mat-cell *matCellDef="let element"> {{moment(element.departureDate).format("DD MM YYYY hh:mm:ss")}} </td>
+  </ng-container>
+
+  <!-- Return Date Column -->
+  <ng-container matColumnDef="returnDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Return Date </th>
+    <td mat-cell *matCellDef="let element"> {{moment(element.returnDate).format("DD MM YYYY hh:mm:ss")}} </td>
+  </ng-container>
+
+  <!-- Connections Column -->
+  <ng-container matColumnDef="numOfConnections">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Connections </th>
+    <td mat-cell *matCellDef="let element"> {{element.numOfConnections}} </td>
+  </ng-container>
+
+    <!-- Connections Column -->
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
