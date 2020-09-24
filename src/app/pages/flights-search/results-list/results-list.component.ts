@@ -16,13 +16,17 @@ export class ResultsListComponent implements OnInit, OnDestroy {
   flightsListSubs: Subscription;
   constructor(private flightsServiceService: FlightsServiceService) { }
   moment: any = moment;
-  displayedColumns: string[] = ['fromLocation', 'toLocation', 'departureDate', 'returnDate','numOfConnections', 'price'];
+  displayedColumns: string[] = ['fromLocation', 'toLocation', 'departureDate', 'returnDate','numOfConnections', 'price','duration'];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   dataSource = new MatTableDataSource();
   ngOnInit() {
     this.flightsListSubs = this.flightsServiceService.observableList.subscribe((res) => {
-      this.dataSource.data = res;
+      const durationCalculateList = res.map(item => ({
+        ...item,
+        duration: moment(item.returnDate).diff(moment(item.departureDate),'hours')
+      }));
+      this.dataSource.data = durationCalculateList;
       this.dataSource.sort = this.sort;
       
     });

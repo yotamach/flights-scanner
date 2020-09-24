@@ -22,7 +22,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatCheckboxModule,
     MatSortModule,
     MatTableModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

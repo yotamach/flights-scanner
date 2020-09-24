@@ -40,5 +40,11 @@
     [vertical]="vertical">
 </mat-slider>
   </div>
+  <div class="row">
+    <mat-checkbox (change)="enablePricesFilter()" color="primary" formControlName="isPricesFilter">Prices range</mat-checkbox>
+  </div>
+  <div class="row" *ngIf="enablePricesFilterChoose">
+    <ng5-slider formControlName="pricesFilter" [(highValue)]="maxPrice" [options]="pricesFilterOptions"></ng5-slider>
+  </div>
   <button type="submit" [disabled]="disableSubmit" mat-raised-button color="warn">Search flights</button>
 </form>
