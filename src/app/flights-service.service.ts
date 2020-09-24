@@ -170,11 +170,10 @@ export class FlightsServiceService {
     }) {
     let filteredResults = this.flightsList.filter(function(item) {
       for (var key in filter) {
-      if (item[key] !== filter[key])
-        return false;
-      
-      return true;
+        if (item[key] !== filter[key])
+          return false;
       }
+      return true;
     });
     if(priceFilter)
       filteredResults = filteredResults.filter(item => item.price > priceFilter.minPrice && item.price < priceFilter.maxPrice);

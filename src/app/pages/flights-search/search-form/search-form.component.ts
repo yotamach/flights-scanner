@@ -9,6 +9,19 @@ import { Options, LabelType } from 'ng5-slider';
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements OnInit {
+  autoTicks = true;
+  disabled = false;
+  invert = false;
+  max = 5;
+  min = 0;
+  showTicks = true;
+  step = 1;
+  thumbLabel = true;
+  value = 0;
+  vertical = false;
+  tickInterval = 1;
+  minPrice: number = 0;
+  maxPrice: number = 100;
   disableConnectionsChoose: boolean = true;
   enablePricesFilterChoose: boolean = false;
   disableSubmit: boolean = true;
@@ -23,8 +36,14 @@ export class SearchFormComponent implements OnInit {
     pricesFilter: [[0,100]]
   });
 
-  minPrice: number = 0;
-  maxPrice: number = 100;
+  constructor(private fb: FormBuilder, private flightsServiceService: FlightsServiceService) { }
+  
+  ngOnInit(): void {
+    this.searchFlightForm.valueChanges.subscribe(() => {
+      this.checkValid();
+    });
+  }
+
   pricesFilterOptions: Options = {
     floor: 0,
     ceil: 5000,
@@ -41,14 +60,6 @@ export class SearchFormComponent implements OnInit {
       }
     }
   };
-
-  constructor(private fb: FormBuilder, private flightsServiceService: FlightsServiceService) { }
-
-  ngOnInit(): void {
-    this.searchFlightForm.valueChanges.subscribe(() => {
-      this.checkValid();
-    });
-  }
 
   onSubmit(): void {
     let filter = {...this.searchFlightForm.value};
@@ -73,8 +84,11 @@ export class SearchFormComponent implements OnInit {
       }
     }
     delete obj['pricesFilter'];
-    delete obj['isConnections'];
     delete obj['isPricesFilter'];
+    if(obj['isConnections'] === false) {
+      delete obj['numOfConnections'];
+    }
+    delete obj['isConnections'];
   }
 
   checkValid() {
@@ -89,18 +103,6 @@ export class SearchFormComponent implements OnInit {
       this.disableSubmit = false;
     }
   }
-
-  autoTicks = true;
-  disabled = false;
-  invert = false;
-  max = 5;
-  min = 1;
-  showTicks = true;
-  step = 1;
-  thumbLabel = true;
-  value = 0;
-  vertical = false;
-  tickInterval = 1;
 
   getSliderTickInterval(): number | 'auto' {
     if (this.showTicks) {

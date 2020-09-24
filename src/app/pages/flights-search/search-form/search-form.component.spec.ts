@@ -9,7 +9,7 @@ describe('SearchFormComponent', () => {
 
   let RLcomponent: ResultsListComponent;
   let RLfixture: ComponentFixture<ResultsListComponent>;
-  
+  let submitEl;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchFormComponent ]
@@ -21,11 +21,11 @@ describe('SearchFormComponent', () => {
     fixture = TestBed.createComponent(SearchFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    submitEl = fixture.debugElement;
 
     RLfixture = TestBed.createComponent(ResultsListComponent);
     RLcomponent = RLfixture.componentInstance;
     RLfixture.detectChanges();
   });
-
 
 });

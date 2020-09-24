@@ -11,7 +11,7 @@ import { FlightsSearchComponent } from './pages/flights-search/flights-search.co
 import { SearchFormComponent } from './pages/flights-search/search-form/search-form.component';
 import { ResultsListComponent } from './pages/flights-search/results-list/results-list.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
@@ -35,6 +35,7 @@ import { Ng5SliderModule } from 'ng5-slider';
   ],
   imports: [
     ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
