@@ -24,7 +24,7 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <mat-checkbox (change)="enableNumOfConnections()" color="primary" formControlName="isConnections">Connections</mat-checkbox>
+    <mat-checkbox (change)="enableNumOfConnections()" color="primary" formControlName="isConnections" ngDefaultControl>Connections</mat-checkbox>
   </div>
   <div class="row">
     <mat-slider
@@ -37,11 +37,12 @@
     [thumbLabel]="thumbLabel"
     [tickInterval]="getSliderTickInterval()"
     formControlName="numOfConnections"
-    [vertical]="vertical">
+    [vertical]="vertical"
+    ngDefaultControl>
 </mat-slider>
   </div>
   <div class="row">
-    <mat-checkbox (change)="enablePricesFilter()" color="primary" formControlName="isPricesFilter">Prices range</mat-checkbox>
+    <mat-checkbox (change)="enablePricesFilter()" color="primary" formControlName="isPricesFilter" ngDefaultControl>Prices range</mat-checkbox>
   </div>
   <div class="row" *ngIf="enablePricesFilterChoose">
     <ng5-slider formControlName="pricesFilter" [(highValue)]="maxPrice" [options]="pricesFilterOptions"></ng5-slider>
